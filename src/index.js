@@ -24,11 +24,12 @@ module.exports = function solveSudoku(matrix) {
 
 					for (var number = 1; number <= 9; number++) {
 						if(!exceptions.includes(number)) {
+							matrix[row][col] = number;
 							break;
 						}
 					}
 
-						matrix[row][col] = number;
+						
 					}
 						
 				}
