@@ -1,9 +1,13 @@
 module.exports = function solveSudoku(matrix) {
+		var zero = 1;
+		while(zero > 0) {
+			zero = 0;
 		for (var row = 0; row < 9; row++) {
-			for ( var col = 0; col < 9; col++) {
+			for (var col = 0; col < 9; col++) {
 				if (matrix[row][col] > 0) {
 					continue;
 				} else {
+					zero++;
 					var exceptions = [];
 					for (var c = 1; c <= 9; c++) {
 						exceptions.push(matrix[row][c]);
@@ -24,16 +28,18 @@ module.exports = function solveSudoku(matrix) {
 
 					for (var number = 1; number <= 9; number++) {
 						if(!exceptions.includes(number)) {
-							
+							matrix[row][col] = number;
 							break;
 						}
 					}
-					matrix[row][col] = number;
+
 						
 					}
 						
 				}
 			}
+
+		}
 			return matrix;
 		}
 	
