@@ -1,4 +1,4 @@
-module.exports = 	function solveSudoku(matrix) {
+module.exports = function solveSudoku(matrix) {
 		for (var row = 0; row < 9; row++) {
 			for ( var col = 0; col < 9; col++) {
 				if (matrix[row][col] > 0) {
