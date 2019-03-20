@@ -1,4 +1,4 @@
-module.exports = 	function solveSudoku(matrix) {
+module.exports = function solveSudoku(matrix) {
 		var zero = 1;
 		while(zero > 0) {
 			zero = 0;
