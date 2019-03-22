@@ -1,16 +1,22 @@
-module.exports = function solveSudoku(matrix) {
+module.exports = 	function solveSudoku(matrix) {
+		var exceptions = [];
 		var zero = 1;
 		while(zero > 0) {
 			zero = 0;
 		for (var row = 0; row < 9; row++) {
+			exceptions = [];
 			for (var col = 0; col < 9; col++) {
 				if (matrix[row][col] > 0) {
 					continue;
 				} else {
 					zero++;
-					var exceptions = [];
+// 					var exceptions = [];
 					for (var c = 0; c < 9; c++) {
+						if(exceptions.includes(matrix[row][c])) {
+							continue;
+						} else {
 						exceptions.push(matrix[row][c]);
+						}
 					}
 					for (var r = 0; r < 9; r++) {
 						if(exceptions.includes(matrix[r][col])) {
