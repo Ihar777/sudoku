@@ -1,4 +1,4 @@
-module.exports = 	function solveSudoku(matrix) {
+module.exports = function solveSudoku(matrix) {
 		var exceptions = [];
 		var zero = 1;
 		while(zero > 0) {
@@ -10,7 +10,6 @@ module.exports = 	function solveSudoku(matrix) {
 					continue;
 				} else {
 					zero++;
-// 					var exceptions = [];
 					for (var c = 0; c < 9; c++) {
 						if(exceptions.includes(matrix[row][c])) {
 							continue;
