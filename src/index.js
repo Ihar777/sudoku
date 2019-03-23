@@ -9,7 +9,6 @@ module.exports = function solveSudoku(matrix) {
 				if (matrix[row][col] > 0) {
 					continue;
 				} else {
-					zero++;
 					for (var c = 0; c < 9; c++) {
 						if(exceptions.includes(matrix[row][c])) {
 							continue;
@@ -40,7 +39,9 @@ module.exports = function solveSudoku(matrix) {
 						}
 					}
 
-				}	
+				}	else {
+					zero++;
+				}
 					}
 						
 				}
