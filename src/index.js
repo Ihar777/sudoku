@@ -32,7 +32,7 @@ module.exports = function solveSudoku(matrix) {
 					}
 						}
 					}
-
+					if(exceptions.length === 8) {
 					for (var number = 1; number <= 9; number++) {
 						if(!exceptions.includes(number)) {
 							matrix[row][col] = number;
@@ -40,7 +40,7 @@ module.exports = function solveSudoku(matrix) {
 						}
 					}
 
-						
+				}	
 					}
 						
 				}
