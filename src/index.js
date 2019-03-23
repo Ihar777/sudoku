@@ -1,6 +1,6 @@
 module.exports = function solveSudoku(matrix) {
 		var exceptions = [];
-		var zero = 81;
+		var zero = 1;
 		while(zero > 0) {
 			zero = 0;
 		for (var row = 0; row < 9; row++) {
@@ -26,7 +26,7 @@ module.exports = function solveSudoku(matrix) {
 
 					for (var squareR = Math.floor(row / 3) * 3; squareR < Math.floor(row / 3) * 3 + 3; squareR++) {
 						for (var squareC = Math.floor(col / 3) * 3; squareC < Math.floor(col / 3) * 3 + 3; squareC++) {
-								if(!exceptions.includes(matrix[squareR][squareC])) {
+								if(matrix[squareR][squareC]) {
 						exceptions.push(matrix[squareR][squareC]);
 					}
 						}
