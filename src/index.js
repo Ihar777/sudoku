@@ -1,8 +1,6 @@
 module.exports = function solveSudoku(matrix) {
 		var exceptions = [];
-		var zero = 1;
-		while(zero > 0) {
-			zero = 0;
+
 		for (var row = 0; row < 9; row++) {
 			exceptions = [];
 			for (var col = 0; col < 9; col++) {
@@ -39,14 +37,12 @@ module.exports = function solveSudoku(matrix) {
 						}
 					}
 
-				}	else {
-					zero++;
-				}
+				}	
+
 					}
 						
 				}
 			}
 
-		}
 			return matrix;
 		}
