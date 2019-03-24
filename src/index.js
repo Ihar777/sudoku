@@ -1,46 +1,112 @@
 module.exports = function solveSudoku(matrix) {
-		var exceptions = [];
 
-		for (var row = 0; row < 9; row++) {
-			exceptions = [];
-			for (var col = 0; col < 9; col++) {
-				if (matrix[row][col] > 0) {
-					continue;
-				} else {
-					for (var c = 0; c < 9; c++) {
-						if(exceptions.includes(matrix[row][c])) {
-							continue;
-						} else {
-						exceptions.push(matrix[row][c]);
-						}
-					}
-					for (var r = 0; r < 9; r++) {
-						if(exceptions.includes(matrix[r][col])) {
-							continue;
-						} else {
-						exceptions.push(matrix[r][col]);
-					}
-				}
+    function emptyPlace(table, zero) {
 
-					for (var squareR = Math.floor(row / 3) * 3; squareR < Math.floor(row / 3) * 3 + 3; squareR++) {
-						for (var squareC = Math.floor(col / 3) * 3; squareC < Math.floor(col / 3) * 3 + 3; squareC++) {
-								if(matrix[squareR][squareC]) {
-						exceptions.push(matrix[squareR][squareC]);
-					}
-						}
-					}
-		
-					for (var number = 1; number <= 9; number++) {
-						if(!exceptions.includes(number)) {
-							matrix[row][col] = number;
-							break;
-						}
-					}
-		
-					}
-						
-				}
-			}
+        for (let row = 0; row < 9; row++) {
 
-			return matrix;
-		}
+            for (let col = 0; col < 9; col++) {
+
+                if (table[row][col] === 0) {
+
+                    zero[0] = row;
+                    zero[1] = col;
+                    return true;
+
+                }
+
+            }
+
+        }
+
+        return false;
+
+    }
+    ;
+    function inRow(table, row, value) {
+
+        for (let col = 0; col < 9; col++) {
+
+            if (table[row][col] == value)
+                return true;
+
+        }
+
+        return false;
+
+    }
+    ;
+    function inCol(table, col, value) {
+
+        for (let row = 0; row < 9; row++) {
+
+            if (table[row][col] == value)
+                return true;
+
+        }
+        return false;
+
+    }
+    ;
+    function inBox(table, row, col, value) {
+
+        for (let i = 0; i < 3; i++) {
+
+            for (let j = 0; j < 3; j++) {
+
+                if (table[i + row][j + col] == value)
+                    return true;
+
+            }
+
+        }
+
+        return false;
+
+    }
+
+    function isProperValue(table, row, col, value) {
+
+        return !inRow(table, row, value) && !inCol(table, col, value) && !inBox(table, row - row % 3, col - col % 3, value);
+
+    }
+
+    function getResult(table) {
+
+        let zero = [0, 0];
+
+        if (!emptyPlace(table, zero))
+            return true;
+
+        let row = zero[0];
+        let col = zero[1];
+
+        for (let value = 1; value < 10; value++) {
+
+            if (isProperValue(table, row, col, value)) {
+
+                table[row][col] = value;
+
+                if (getResult(table))
+                    return true;
+
+                else {
+                    table[row][col] = 0;
+                }
+
+            }
+
+        }
+
+        return false;
+
+    }
+
+    if (getResult(matrix)) {
+
+        return matrix;
+
+    } else {
+        return "Impossible to solve";
+    }
+
+}
